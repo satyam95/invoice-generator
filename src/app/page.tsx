@@ -10,17 +10,41 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
+import { Download, Eye, Pencil, Save, Undo2 } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="w-full min-h-screen bg-gray-50">
-      <div className="flex flex-row min-h-screen p-2">
+      <div className="bg-white h-12 flex items-center">
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="icon">
+                <Undo2 className="h-4 w-4" />
+              </Button>
+              <div className="text-xl font-bold">Pencil Invoice</div>
+            </div>
+            <div className="flex items-center gap-4">
+              <Button variant="outline">
+                <Download className="mr-2 h-4 w-4" />
+                Download
+              </Button>
+              <Button>
+                <Save className="mr-2 h-4 w-4" />
+                Save
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container mx-auto flex flex-row min-h-[calc(100vh-4rem)] p-2">
         <div className="w-sm p-4 bg-white border-r border-gray-200 relative shadow-md rounded-md space-y-4">
-          <ScrollArea className="h-[calc(100vh-3rem)] no-scrollbar overflow-y-auto">
+          <ScrollArea className="h-[calc(100vh-6rem)] no-scrollbar overflow-y-auto">
             <div className="space-y-4">
               <Accordion
                 type="multiple"

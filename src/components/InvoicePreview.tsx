@@ -80,7 +80,7 @@ const InvoicePreview: React.FC = () => {
   pages.push(currentPage);
 
   return (
-    <ScrollArea className="mx-auto bg-white shadow-lg rounded-lg max-w-[210mm] h-[calc(100vh-1rem)] relative">
+    <ScrollArea className="mx-auto bg-white shadow-lg rounded-lg max-w-[210mm] h-[calc(100vh-4rem)] relative">
       {pages.map((page: Page, pageIndex: number) => (
         <div
           key={pageIndex}
