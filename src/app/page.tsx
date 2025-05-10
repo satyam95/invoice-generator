@@ -1,6 +1,7 @@
 import BuyerInfoForm from "@/components/BuyerInfoForm";
 import GeneralInfoForm from "@/components/GeneralInfoForm";
 import InvoiceItemsForm from "@/components/InvoiceItemsForm";
+import InvoicePreview from "@/components/InvoicePreview";
 import SellerInfoForm from "@/components/SellerInfoForm";
 
 import {
@@ -120,7 +121,9 @@ export default function Home() {
             </div>
           </ScrollArea>
         </div>
-        <div className="flex-1"></div>
+        <div className="flex-1">
+          <InvoicePreview />
+        </div>
       </div>
     </div>
   );
