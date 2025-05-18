@@ -10,6 +10,7 @@ export interface InvoiceItem {
 }
 
 export interface InvoiceData {
+  name: string;
   general: {
     currency: string;
     dateFormat: string;

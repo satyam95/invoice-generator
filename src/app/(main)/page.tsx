@@ -8,7 +8,19 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check, X } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "InvoiceGen - Create and Manage Invoices Easily",
+  description: "Generate, track, and manage professional invoices effortlessly with InvoiceGen. Simplify your billing process today.",
+  openGraph: {
+    title: "InvoiceGen - Create and Manage Invoices Easily",
+    description: "Generate, track, and manage professional invoices effortlessly with InvoiceGen. Simplify your billing process today.",
+    type: "website",
+    url: "/",
+  },
+};
 
 const plans = [
   {

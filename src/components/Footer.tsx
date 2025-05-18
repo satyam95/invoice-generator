@@ -9,7 +9,7 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="mb-4 flex items-center space-x-2">
               <FileInvoice className="h-6 w-6" />
-              <span className="font-bold">InvoiceX</span>
+              <span className="font-bold">InvoiceGen</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               Simplify your invoicing process with InvoiceX. Create professional
@@ -131,7 +131,7 @@ export function Footer() {
         <div className="mt-12 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} InvoiceX. All rights reserved.
+              © {new Date().getFullYear()} InvoiceGen. All rights reserved.
             </p>
             <div className="flex gap-4">
               <Link

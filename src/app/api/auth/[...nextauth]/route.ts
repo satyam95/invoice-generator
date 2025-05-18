@@ -7,6 +7,28 @@ import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
 import { accounts, sessions, users, verificationTokens } from '@/db/schema';
 import { db } from '@/db/db';
+import { JWT } from 'next-auth/jwt';
+import { Session } from 'next-auth';
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  }
+}
+
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+  }
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db, {
@@ -23,7 +45,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        // Ensure credentials are defined and email/password are strings
         if (!credentials || typeof credentials.email !== 'string' || typeof credentials.password !== 'string') {
           return null;
         }
@@ -46,9 +67,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60
   },
   pages: {
     signIn: '/login',
   },
+  callbacks: {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.image = user.image;
+      }
+      return token;
+    },
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session.user) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.image;
+      }
+      return session;
+    },
+  },
 });
+
+export const GET = handlers.GET;
+export const POST = handlers.POST;

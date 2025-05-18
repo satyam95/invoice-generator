@@ -1,15 +1,24 @@
+import InvoicesTable from "@/components/InvoicesTable";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Dashboard - InvoiceGen",
+  description: "View and manage your invoices with InvoiceGen.",
+  openGraph: {
+    title: "Dashboard - InvoiceGen",
+    description: "View and manage your invoices with InvoiceGen.",
+    type: "website",
+    url: "/dashboard",
+  },
+};
 
 const Dashboard = () => {
   return (
-    <>
-      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
-      </div>
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-    </>
+    <div className="flex flex-col gap-5">
+      <h2 className="font-bold text-2xl">Invoices</h2>
+      <InvoicesTable />
+    </div>
   );
 };
 

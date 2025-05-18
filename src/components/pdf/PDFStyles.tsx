@@ -58,13 +58,13 @@ export const styles = StyleSheet.create({
   detailsGrid: {
     flexDirection: "row",
     marginBottom: 4,
-    gap: 35,
+    gap: 30,
   },
   detailsLabel: {
     color: "#7E868C",
     fontSize: 10,
     fontWeight: "normal",
-    minWidth: 61,
+    minWidth: 74,
   },
   detailsValue: {
     color: "#11181C",

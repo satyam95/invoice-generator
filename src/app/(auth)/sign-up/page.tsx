@@ -1,4 +1,16 @@
 import { SignUpForm } from "@/components/SignUpForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign Up - InvoiceGen",
+  description: "Create a free InvoiceGen account to start generating and managing professional invoices today.",
+  openGraph: {
+    title: "Sign Up - InvoiceGen",
+    description: "Create a free InvoiceGen account to start generating and managing professional invoices today.",
+    type: "website",
+    url: "/signup",
+  },
+};
 
 export default function SignUpPage() {
   return (

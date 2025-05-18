@@ -162,7 +162,7 @@ const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
           {/* Footer */}
           <View style={styles.footer} fixed>
             <View style={styles.footerBottom}>
-              <Text>This is a computer-generated invoice created using InvoicePro.</Text>
+              <Text>This is a computer-generated invoice created using InvoiceGen.</Text>
               <Text
                 render={({ pageNumber, totalPages }) =>
                   `${pageNumber} / ${totalPages}`

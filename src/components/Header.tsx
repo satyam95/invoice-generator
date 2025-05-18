@@ -12,7 +12,7 @@ export function Header() {
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <FileInvoice className="h-6 w-6" />
-            <span className="font-bold">InvoiceX</span>
+            <span className="font-bold">InvoiceGen</span>
           </Link>
         </div>
         <div className="ml-auto flex items-center space-x-4">

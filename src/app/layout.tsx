@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { InvoiceProvider } from "@/context/InvoiceContext";
+import { SessionProvider } from "next-auth/react";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +21,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
         suppressHydrationWarning
       >
-        <InvoiceProvider>{children}</InvoiceProvider>
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );

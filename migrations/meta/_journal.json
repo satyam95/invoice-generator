@@ -8,6 +8,13 @@
       "when": 1747428475120,
       "tag": "0000_volatile_starfox",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1747591642391,
+      "tag": "0001_blushing_emma_frost",
+      "breakpoints": true
     }
   ]
 }

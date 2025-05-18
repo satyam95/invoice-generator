@@ -1,4 +1,16 @@
 import { LoginForm } from "@/components/LoginForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login - InvoiceGen",
+  description: "Log in to your InvoiceGen account to manage your invoices and streamline your billing process.",
+  openGraph: {
+    title: "Login - InvoiceGen",
+    description: "Log in to your InvoiceGen account to manage your invoices and streamline your billing process.",
+    type: "website",
+    url: "/login",
+  },
+};
 
 export default function LoginPage() {
   return (

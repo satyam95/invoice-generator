@@ -16,13 +16,15 @@ type Action =
   | { type: "UPDATE_TOTAL"; payload: string }
   | { type: "UPDATE_ADDITIONAL_CHARGES"; payload: string }
   | { type: "UPDATE_DISCOUNT"; payload: string }
-  | { type: "UPDATE_NOTE"; payload: string };
+  | { type: "UPDATE_NOTE"; payload: string }
+  | { type: "UPDATE_NAME"; payload: string };
 
 const currentDate = new Date(); // May 15, 2025
 const serviceDate = new Date(currentDate);
 serviceDate.setDate(currentDate.getDate() + 7);
 
-const initialState: InvoiceData = {
+export const initialState: InvoiceData = {
+  name: "New Invoice",
   general: {
     currency: "INR",
     dateFormat: "MM/DD/YYYY",
@@ -92,7 +94,7 @@ function invoiceReducer(state: InvoiceData, action: Action): InvoiceData {
     case "REMOVE_ITEM":
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload)
+        items: state.items.filter((item) => item.id !== action.payload),
       };
     case "UPDATE_TOTAL":
       return { ...state, total: action.payload };
@@ -102,6 +104,8 @@ function invoiceReducer(state: InvoiceData, action: Action): InvoiceData {
       return { ...state, discount: action.payload };
     case "UPDATE_NOTE":
       return { ...state, note: action.payload };
+    case "UPDATE_NAME":
+      return { ...state, name: action.payload };
     default:
       return state;
   }
@@ -112,10 +116,14 @@ const InvoiceContext = createContext<{
   dispatch: React.Dispatch<Action>;
 } | null>(null);
 
-export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [state, dispatch] = useReducer(invoiceReducer, initialState);
+export const InvoiceProvider: React.FC<{
+  children: React.ReactNode;
+  initialData?: InvoiceData;
+}> = ({ children, initialData }) => {
+  const [state, dispatch] = useReducer(
+    invoiceReducer,
+    initialData || initialState
+  );
   return (
     <InvoiceContext.Provider value={{ state, dispatch }}>
       {children}
