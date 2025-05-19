@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/AppSidebar";
+import { BreadcrumbNav } from "@/components/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -20,8 +21,11 @@ export default function DashboardLayout({
       <SidebarInset>
         <header className="flex w-full h-16 shrink-0 items-center gap-2">
           <div className="flex w-full items-center justify-between gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
+            <div className="flex items-center h-4 gap-2 ">
+              <SidebarTrigger className="-ml-1" />
+              <Separator orientation="vertical" className="h-4 block" />
+              <BreadcrumbNav />
+            </div>
             <Link href="/invoice/new" className="cursor-pointer">
               <Button size="sm">
                 <Plus size={20} strokeWidth={3} /> Create Invoice

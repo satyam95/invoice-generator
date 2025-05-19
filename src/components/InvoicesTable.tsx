@@ -22,6 +22,7 @@ import { getUserInvoices } from "@/actions/getUserInvoices";
 import { InvoiceData } from "@/context/types";
 import { useRouter } from "next/navigation";
 import { deleteInvoice } from "@/actions/deleteInvoice";
+import Link from "next/link";
 
 // Define the type for invoices based on getUserInvoices
 type Invoice = {
@@ -181,10 +182,8 @@ const InvoicesTable = () => {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-32">
-                      <DropdownMenuItem
-                        onClick={() => router.push(`/invoice/${invoice.id}`)}
-                      >
-                        Edit
+                      <DropdownMenuItem>
+                        <Link href={`/invoice/${invoice.id}`}>Edit</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => handleDelete(invoice.id)}

@@ -124,8 +124,8 @@ export default function Invoice({
           </div>
         </div>
         <div className="container mx-auto flex flex-row gap-10 min-h-[calc(100vh-4rem)] p-2">
-          <div className="w-sm p-4 bg-white border-r border-gray-200 relative shadow-md rounded-md space-y-4">
-            <ScrollArea className="h-[calc(100vh-6rem)] no-scrollbar overflow-y-auto">
+          <div>
+            <ScrollArea className="h-[calc(100vh-4rem)] no-scrollbar overflow-y-auto w-sm p-6 bg-white border-r border-gray-200 relative shadow-md rounded-md space-y-4">
               <div className="space-y-4">
                 <Accordion
                   type="multiple"
@@ -185,7 +185,9 @@ export default function Invoice({
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-                <TotalInfoForm />
+                <div className="px-2">
+                  <TotalInfoForm />
+                </div>
               </div>
             </ScrollArea>
           </div>
