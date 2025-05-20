@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Download, Save, Undo2, Edit2 } from "lucide-react";
+import { Save, Undo2, Edit2, Loader2 } from "lucide-react";
 import GeneralInfoForm from "@/components/GeneralInfoForm";
 import SellerInfoForm from "@/components/SellerInfoForm";
 import BuyerInfoForm from "@/components/BuyerInfoForm";
@@ -21,6 +21,8 @@ import InvoicePreview from "@/components/pdf/InvoicePreview";
 import { InvoiceData } from "@/context/types";
 import { saveInvoice } from "@/actions/saveInvoice";
 import Link from "next/link";
+import InvoicePDFDownloadLink from "./InvoicePDFDownloadLink ";
+import { toast } from "sonner";
 
 interface InvoiceProps {
   initialData: InvoiceData;
@@ -39,21 +41,30 @@ export default function Invoice({
     const { state, dispatch } = useInvoice();
     const [isEditingName, setIsEditingName] = useState(false);
     const [editedName, setEditedName] = useState(state.name);
+    const [saving, setSaving] = useState(false); // New saving state
 
     useEffect(() => {
       setEditedName(state.name);
     }, [state.name]);
 
     const handleSave = async () => {
+      setSaving(true);
       try {
         const result = await saveInvoice(state, isNew, invoiceId);
         if (isNew && result.newId) {
           router.push(`/invoice/${result.newId}`);
+          toast.success("Invoice created successfully!", {
+            description: `Invoice ID: ${result.newId}`,
+          });
         } else {
-          console.log("Invoice updated successfully");
+          toast.success("Invoice updated successfully!");
         }
       } catch (error) {
-        console.error("Error saving invoice:", error);
+        toast.error("Failed to save invoice", {
+          description: "Please try again.",
+        });
+      } finally {
+        setSaving(false); // Reset saving state
       }
     };
 
@@ -111,13 +122,23 @@ export default function Invoice({
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <Button variant="outline" className="cursor-pointer">
-                  <Download className="mr-2 h-4 w-4 " />
-                  Download
-                </Button>
-                <Button onClick={handleSave} className="cursor-pointer">
-                  <Save className="mr-2 h-4 w-4" />
-                  {isNew ? "Save" : "Update"}
+                <InvoicePDFDownloadLink data={state} />
+                <Button
+                  onClick={handleSave}
+                  disabled={saving} // Disable button while saving
+                  className="cursor-pointer"
+                >
+                  {saving ? (
+                    <span className="inline-flex items-center">
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Saving...
+                    </span>
+                  ) : (
+                    <>
+                      <Save className="mr-2 h-4 w-4" strokeWidth={3} />
+                      {isNew ? "Save" : "Update"}
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
