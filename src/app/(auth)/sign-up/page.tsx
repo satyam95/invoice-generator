@@ -33,7 +33,7 @@ export default async function SignUpPage() {
           </Button>
         </Link>
       </div>
-      <div className="flex w-full max-w-sm flex-col gap-6">
+      <div className="flex w-full max-w-sm flex-col gap-6 pt-10 sm:pt-0">
         <SignUpForm />
       </div>
     </div>

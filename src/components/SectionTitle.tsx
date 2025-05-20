@@ -20,7 +20,7 @@ const SectionTitle = ({
         {subtitle}
       </div>
       <div className="flex flex-col gap-4 max-w-2xl">
-        <h3 className="text-[#0A0A0B] text-5xl font-bold">{title}</h3>
+        <h3 className="text-[#0A0A0B] text-4xl sm:text-5xl font-bold">{title}</h3>
         <p className="text-[#5A656F] text-xl">{description}</p>
       </div>
     </div>

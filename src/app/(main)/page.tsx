@@ -19,17 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-const images: string[] = [
-  "/image-1.jpg",
-  "/image-2.jpg",
-  "/image-3.jpg",
-  "/image-4.jpg",
-  "/image-5.jpg",
-  "/image-6.jpg",
-  "/image-7.jpg",
-  "/image-8.jpg",
-];
-
 export default function Home() {
   return (
     <>
@@ -37,7 +26,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl">
           <div className="flex flex-col gap-10 items-center w-full">
             <div className="flex flex-col gap-4 items-center justify-center w-full">
-              <h2 className="text-[#0A0A0B] text-5xl font-bold leading-15 text-center">
+              <h2 className="text-[#0A0A0B] text-4xl sm:text-5xl font-bold sm:leading-15 text-center">
                 Unlock the Power of Your Data with Point Pulse
               </h2>
               <p className="text-[#5A656F] text-xl text-center px-4">
@@ -60,7 +49,7 @@ export default function Home() {
       <section className="border-b border-[#E1E4E7]">
         <div className="max-w-5xl mx-auto">
           <div className="py-20">
-            <div className="px-16">
+            <div className="px-5 sm:px-16">
               <div className="flex flex-col gap-16">
                 <SectionTitle
                   icon={ServerCrash}
@@ -68,7 +57,7 @@ export default function Home() {
                   subtitle="Always Stay Ahead"
                   description="Gain critical insights by monitoring your business activities in real-time, ensuring you’re always one step ahead."
                 />
-                <div className="relative w-full h-[518px] max-w-[896px] mx-auto">
+                <div className="relative w-full sm:h-[518px] max-w-[896px] mx-auto">
                   <Image
                     src="/feature.png"
                     alt="feature"
@@ -96,7 +85,7 @@ export default function Home() {
         <div className="py-20">
           <div className="flex flex-col gap-16">
             <div className="max-w-5xl mx-auto">
-              <div className="px-16">
+              <div className="px-5 sm:px-16">
                 <SectionTitle
                   icon={ServerCrash}
                   title="Streamline Your Workflows with Automation"
@@ -106,7 +95,7 @@ export default function Home() {
               </div>
             </div>
             <div className="container mx-auto">
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-0 sm:justify-between">
                 <FeatureCard
                   image="/feature2.png"
                   alt="feature 2"
@@ -138,8 +127,8 @@ export default function Home() {
       </section>
       <section className="py-20">
         <div className="max-w-5xl mx-auto">
-          <div className="px-16">
-            <div className="flex flex-col gap-16">
+          <div className="px-5 sm:px-16">
+            <div className="flex flex-col gap-10 sm:gap-16">
               <Image
                 src="/iconcontainer.png"
                 alt="icon"
@@ -147,7 +136,7 @@ export default function Home() {
                 height={64}
               />
               <div className="flex flex-col gap-4 max-w-2xl">
-                <h3 className="text-[#0A0A0B] text-5xl font-bold">
+                <h3 className="text-[#0A0A0B] text-4xl sm:text-5xl font-bold">
                   A Must-Have Tool for Team
                 </h3>
                 <p className="text-[#5A656F] text-xl">

@@ -5,30 +5,34 @@ export function Footer() {
   return (
     <footer>
       <div className="max-w-5xl mx-auto">
-        <div className="py-4 px-16">
-          <div className="py-20">
-            <div className="flex items-start gap-40">
+        <div className="py-4 px-5 sm:px-16">
+          <div className="py-10 sm:py-20">
+            <div className="flex flex-col sm:flex-row items-start gap-15 sm:gap-40">
               <Image src="/logo.png" alt="logo" width={152} height={28} />
-              <div className="flex flex-col gap-4">
-                <h3 className="text-[#0A0A0B] text-sm font-semibold">
-                  Support
-                </h3>
-                <ul className="flex flex-col gap-3">
-                  <li className="text-[#3A4248] text-sm">Pricing</li>
-                  <li className="text-[#3A4248] text-sm">Documentation</li>
-                  <li className="text-[#3A4248] text-sm">Subscribe waitlist</li>
-                  <li className="text-[#3A4248] text-sm">Download</li>
-                </ul>
-              </div>
-              <div className="flex flex-col gap-4">
-                <h3 className="text-[#0A0A0B] text-sm font-semibold">
-                  Guides
-                </h3>
-                <ul className="flex flex-col gap-3">
-                  <li className="text-[#3A4248] text-sm">Privacy</li>
-                  <li className="text-[#3A4248] text-sm">Terms</li>
-                  <li className="text-[#3A4248] text-sm">Contact</li>
-                </ul>
+              <div className="flex gap-15 sm:gap-40">
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-[#0A0A0B] text-sm font-semibold">
+                    Support
+                  </h3>
+                  <ul className="flex flex-col gap-3">
+                    <li className="text-[#3A4248] text-sm">Pricing</li>
+                    <li className="text-[#3A4248] text-sm">Documentation</li>
+                    <li className="text-[#3A4248] text-sm">
+                      Subscribe waitlist
+                    </li>
+                    <li className="text-[#3A4248] text-sm">Download</li>
+                  </ul>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-[#0A0A0B] text-sm font-semibold">
+                    Guides
+                  </h3>
+                  <ul className="flex flex-col gap-3">
+                    <li className="text-[#3A4248] text-sm">Privacy</li>
+                    <li className="text-[#3A4248] text-sm">Terms</li>
+                    <li className="text-[#3A4248] text-sm">Contact</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -36,7 +40,7 @@ export function Footer() {
       </div>
       <div className="border-t border-[#E1E4E7]">
         <div className="max-w-5xl mx-auto">
-          <div className="py-4 px-16">
+          <div className="py-4 px-5 sm:px-16">
             <div className="flex items-center justify-between">
               <div className="text-[#697783] text-sm">
                 © {new Date().getFullYear()} InvoiceGen. All rights reserved.
