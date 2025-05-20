@@ -3,7 +3,12 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, FileInput as FileInvoice } from "lucide-react";
+import {
+  ChevronDown,
+  CircuitBoard,
+  CreditCard,
+  MessageCircleMore,
+} from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -12,60 +17,96 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import Image from "next/image";
 
 export function Header() {
   const { data: session, status } = useSession();
   return (
-    <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 items-center justify-between">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <FileInvoice className="h-6 w-6" />
-            <span className="font-bold">InvoiceGen</span>
-          </Link>
+    <>
+      <div className="bg-[#0A0A0B] w-full h-11 ">
+        <div className="max-w-5xl mx-auto h-full flex items-center">
+          <div className="flex items-center justify-between w-full px-15">
+            <div className="text-white text-sm">
+              Early access for PointPulse SaaS
+            </div>
+            <div className="text-white text-sm">
+              Join the waitlist for early access →
+            </div>
+          </div>
         </div>
-        {status === "loading" ? (
-          <div className="ml-auto flex items-center space-x-4">
-            <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse" />
-          </div>
-        ) : status === "authenticated" ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <div className="flex items-center gap-1 cursor-pointer">
-                <Avatar className="h-8 w-8 rounded-full">
-                  {session?.user.image && (
-                    <AvatarImage
-                      src={session?.user.image}
-                      alt={session?.user.name || "User"}
-                    />
-                  )}
-                  <AvatarFallback className="h-8 w-8 rounded-full text-sm">
-                    NA
-                  </AvatarFallback>
-                </Avatar>
-                <ChevronDown className="w-4 h-4" />
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-32">
-              <DropdownMenuItem>
-                <Link href="/dashboard">Dashboard</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
-                Log Out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
-          <div className="ml-auto flex items-center space-x-4">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/sign-up">Sign up</Link>
-            </Button>
-          </div>
-        )}
       </div>
-    </div>
+      <div className="h-26">
+        <div className="max-w-5xl mx-auto h-full flex items-center">
+          <div className="flex items-center justify-between w-full px-15">
+            <Image src="/logo.png" alt="logo" width={152} height={28} />
+            <nav>
+              <ul className="flex items-center gap-8">
+                <li>
+                  <div className="flex items-center gap-2 text-[#0A0A0B] font-medium">
+                    <CircuitBoard size={24} />
+                    Feature
+                  </div>
+                </li>
+                <li>
+                  <div className="flex items-center gap-2 text-[#7B8994] font-medium">
+                    <MessageCircleMore size={24} />
+                    Testimonial
+                  </div>
+                </li>
+                <li>
+                  <div className="flex items-center gap-2 text-[#7B8994] font-medium">
+                    <CreditCard size={24} />
+                    Pricing
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <div>
+              {status === "loading" ? (
+                <div className="ml-auto flex items-center space-x-4">
+                  <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse" />
+                </div>
+              ) : status === "authenticated" ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="flex items-center gap-1 cursor-pointer">
+                      <Avatar className="h-10 w-10 rounded-full">
+                        {session?.user.image && (
+                          <AvatarImage
+                            className="h-10 w-10"
+                            src={session?.user.image}
+                            alt={session?.user.name || "User"}
+                          />
+                        )}
+                        <AvatarFallback className="h-8 w-8 rounded-full text-sm">
+                          NA
+                        </AvatarFallback>
+                      </Avatar>
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-32">
+                    <DropdownMenuItem>
+                      <Link href="/dashboard">Dashboard</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                    >
+                      Log Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <div className="ml-auto flex items-center space-x-4">
+                  <Button className="bg-[#0A0A0B] rounded-3xl">
+                    <Link href="/login">Login</Link>
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
