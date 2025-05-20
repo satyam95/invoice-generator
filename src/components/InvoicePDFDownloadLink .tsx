@@ -17,7 +17,7 @@ const InvoicePDFDownloadLink = ({ data }: { data: InvoiceData }) => {
     2,
     "0"
   )}-${now.getFullYear()}`;
-  const filename = `invoice-${formattedDate}.pdf`;
+  const filename = `invoice-${data.general.invoiceNumber}-${formattedDate}.pdf`;
 
   return (
     <DynamicPDFDownloadLink

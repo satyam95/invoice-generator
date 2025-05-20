@@ -20,7 +20,6 @@ import { Button } from "./ui/button";
 import { MoreVerticalIcon } from "lucide-react";
 import { getUserInvoices } from "@/actions/getUserInvoices";
 import { InvoiceData } from "@/context/types";
-import { useRouter } from "next/navigation";
 import { deleteInvoice } from "@/actions/deleteInvoice";
 import Link from "next/link";
 
@@ -33,25 +32,10 @@ type Invoice = {
   updatedAt: Date;
 };
 
-// Define InvoiceDataWithoutName for clarity (adjust based on your actual InvoiceData type)
-type InvoiceDataWithoutName = {
-  general: {
-    issueDate: Date | null;
-    serviceDate: Date | null;
-    status?: string; // Optional, may not exist
-  };
-  buyer: {
-    name: string | null;
-  };
-  total: number | null;
-};
-
 const InvoicesTable = () => {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     async function fetchInvoices() {
@@ -73,7 +57,6 @@ const InvoicesTable = () => {
   const handleDelete = async (invoiceId: string) => {
     try {
       setLoading(true);
-      setDeletingId(invoiceId);
       await deleteInvoice(invoiceId);
       const data = await getUserInvoices();
       setInvoices(data);
@@ -82,7 +65,6 @@ const InvoicesTable = () => {
         err instanceof Error ? err.message : "Failed to delete invoice";
       setError(errorMessage);
     } finally {
-      setDeletingId(null);
       setLoading(false);
     }
   };

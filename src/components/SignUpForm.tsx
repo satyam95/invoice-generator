@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useCallback } from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,12 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-interface SignUpFormProps extends React.ComponentPropsWithoutRef<"div"> {}
-
-export const SignUpForm: React.FC<SignUpFormProps> = ({
-  className,
-  ...props
-}) => {
+export const SignUpForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -46,8 +40,10 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
         }
 
         router.push("/login");
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        const errorMessage =
+          err instanceof Error ? err.message : "An unexpected error occurred";
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -56,7 +52,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
   );
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Create an account</CardTitle>

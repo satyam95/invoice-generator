@@ -61,7 +61,7 @@ export default function Invoice({
         }
       } catch (error) {
         toast.error("Failed to save invoice", {
-          description: "Please try again.",
+          description: `"Error: ${error}`,
         });
       } finally {
         setSaving(false); // Reset saving state

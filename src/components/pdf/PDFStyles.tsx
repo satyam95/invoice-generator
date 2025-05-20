@@ -1,4 +1,640 @@
-import { StyleSheet } from "@react-pdf/renderer";
+import { Font, StyleSheet } from "@react-pdf/renderer";
+
+Font.register({
+  family: "Inter",
+  fonts: [
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTc2dphjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTcWdthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTch9thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTc2dthjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTc69thjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTcB9xhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTcPtxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTcWdxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOKk4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOCk4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOak4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnOqk4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPKk4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "italic",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCM3FwrK3iLTcvneQg7Ca725JhhKnPqk4j1ebLhAm8SrXTccNxhjQ.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 100,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuLyeMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 200,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuDyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 300,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuOKfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 400,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuLyfMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 500,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuI6fMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 600,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuGKYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 700,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuFuYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 800,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuDyYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50qjIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ujIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ijIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp506jIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+    {
+      fontStyle: "normal",
+      fontWeight: 900,
+      src: "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50yjIw2boKoduKmMEVuBWYMZg.ttf",
+    },
+  ],
+});
 
 // Create styles
 export const styles = StyleSheet.create({
@@ -8,7 +644,7 @@ export const styles = StyleSheet.create({
     paddingRight: 30,
     paddingBottom: 46,
     fontSize: 11,
-    fontFamily: "Helvetica",
+    fontFamily: "Inter",
     backgroundColor: "white",
   },
   header: {

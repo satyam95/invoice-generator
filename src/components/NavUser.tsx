@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 
 const NavUser = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   return (
     <SidebarMenu>
       <SidebarMenuItem>

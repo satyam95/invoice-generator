@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useCallback } from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,12 +14,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {}
-
-export const LoginForm: React.FC<LoginFormProps> = ({
-  className,
-  ...props
-}) => {
+export const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -51,7 +45,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   );
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>

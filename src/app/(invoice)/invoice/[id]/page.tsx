@@ -13,17 +13,18 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }): Promise<Metadata> {
+  const { id } = await params;
   let title = "New Invoice - InvoiceGen";
   let description = "Create a new invoice with InvoiceGen.";
 
-  if (params.id !== "new") {
+  if (id !== "new") {
     const session = await auth();
     if (session) {
       const userId = session.user.id;
       const invoice = await db
         .select()
         .from(invoices)
-        .where(and(eq(invoices.id, params.id), eq(invoices.userId, userId)))
+        .where(and(eq(invoices.id, id), eq(invoices.userId, userId)))
         .limit(1);
 
       if (invoice[0]) {
@@ -40,7 +41,7 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
-      url: `/invoice/${params.id}`,
+      url: `/invoice/${id}`,
     },
   };
 }
