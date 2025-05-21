@@ -21,6 +21,7 @@
     "@radix-ui/react-select": "^2.2.4",
     "@radix-ui/react-separator": "^1.1.6",
     "@radix-ui/react-slot": "^1.2.2",
+    "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-tooltip": "^1.2.6",
     "@react-pdf/renderer": "^4.3.0",
     "bcrypt": "^6.0.0",
@@ -41,6 +42,7 @@
     "react-use-measure": "^2.1.7",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
+    "ua-parser-js": "^2.0.3",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

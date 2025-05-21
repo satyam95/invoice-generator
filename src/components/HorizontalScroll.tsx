@@ -84,7 +84,7 @@ const HorizontalScroll = () => {
     }
 
     return () => controls?.stop();
-  }, [rerender, xTranslation, duration, width]);
+  }, [rerender, xTranslation, duration, width, mustFinish]);
 
   return (
     <div className="py-8 overflow-hidden">

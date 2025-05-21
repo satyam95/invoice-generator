@@ -6,23 +6,21 @@ import { InvoiceProvider, useInvoice } from "@/context/InvoiceContext";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Save, Undo2, Edit2, Loader2 } from "lucide-react";
-import GeneralInfoForm from "@/components/GeneralInfoForm";
-import SellerInfoForm from "@/components/SellerInfoForm";
-import BuyerInfoForm from "@/components/BuyerInfoForm";
-import InvoiceItemsForm from "@/components/InvoiceItemsForm";
-import TotalInfoForm from "@/components/TotalInfoForm";
+  Save,
+  Undo2,
+  Edit2,
+  Loader2,
+  PencilIcon,
+  FileTextIcon,
+} from "lucide-react";
 import InvoicePreview from "@/components/pdf/InvoicePreview";
 import { InvoiceData } from "@/context/types";
 import { saveInvoice } from "@/actions/saveInvoice";
 import Link from "next/link";
 import InvoicePDFDownloadLink from "./InvoicePDFDownloadLink ";
 import { toast } from "sonner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import InvoiceForm from "./InvoiceForm";
 
 interface InvoiceProps {
   initialData: InvoiceData;
@@ -121,7 +119,7 @@ export default function Invoice({
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="hidden xl:flex items-center gap-4">
                 <InvoicePDFDownloadLink data={state} />
                 <Button
                   onClick={handleSave}
@@ -144,76 +142,62 @@ export default function Invoice({
             </div>
           </div>
         </div>
-        <div className="container mx-auto flex flex-row gap-10 min-h-[calc(100vh-4rem)] p-2">
+        <div className="container mx-auto hidden xl:flex flex-row gap-10 min-h-[calc(100vh-4rem)] p-2">
           <div>
             <ScrollArea className="h-[calc(100vh-4rem)] no-scrollbar overflow-y-auto w-sm p-6 bg-white border-r border-gray-200 relative shadow-md rounded-md space-y-4">
-              <div className="space-y-4">
-                <Accordion
-                  type="multiple"
-                  defaultValue={["general"]}
-                  className="space-y-4"
-                >
-                  <AccordionItem
-                    value="general"
-                    className="rounded-lg border shadow"
-                  >
-                    <AccordionTrigger className="px-4 py-3 items-center">
-                      <div className="text-lg font-semibold text-gray-900">
-                        General Information
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4">
-                      <GeneralInfoForm />
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem
-                    value="seller"
-                    className="rounded-lg border shadow"
-                  >
-                    <AccordionTrigger className="px-4 py-3 items-center">
-                      <div className="text-lg font-semibold text-gray-900">
-                        Seller Information
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4">
-                      <SellerInfoForm />
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem
-                    value="buyer"
-                    className="rounded-lg border shadow"
-                  >
-                    <AccordionTrigger className="px-4 py-3 items-center">
-                      <div className="text-lg font-semibold text-gray-900">
-                        Buyer Information
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4">
-                      <BuyerInfoForm />
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem
-                    value="items"
-                    className="rounded-lg border shadow"
-                  >
-                    <AccordionTrigger className="px-4 py-3 items-center">
-                      <div className="text-lg font-semibold text-gray-900">
-                        Invoice Items
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4">
-                      <InvoiceItemsForm />
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-                <div className="px-2">
-                  <TotalInfoForm />
-                </div>
-              </div>
+              <InvoiceForm />
             </ScrollArea>
           </div>
           <div className="flex-1">
             <InvoicePreview />
+          </div>
+        </div>
+        <div className="xl:hidden h-[calc(100vh-3rem)] p-2">
+          <Tabs defaultValue="TAB_INVOICE_FORM" className="w-full">
+            <TabsList className="w-full">
+              <TabsTrigger value="TAB_INVOICE_FORM" className="flex-1">
+                <span className="flex items-center gap-1">
+                  <PencilIcon className="h-4 w-4" />
+                  Edit Invoice
+                </span>
+              </TabsTrigger>
+              <TabsTrigger value="TAB_INVOICE_PREVIEW" className="flex-1">
+                <span className="flex items-center gap-1">
+                  <FileTextIcon className="h-4 w-4" />
+                  Preview PDF
+                </span>
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="TAB_INVOICE_FORM" className="mt-1">
+              <div className="h-[calc(100vh-6.75rem)] overflow-auto w-full p-4 pb-20">
+                <InvoiceForm />
+              </div>
+            </TabsContent>
+            <TabsContent value="TAB_INVOICE_PREVIEW" className="mt-1">
+              <div className="flex h-[calc(100vh-6.75rem)] overflow-auto w-full">
+                <InvoicePreview />
+              </div>
+            </TabsContent>
+          </Tabs>
+          <div className="absolute left-0 bottom-0 z-50 mt-2 flex items-center justify-center gap-3 w-full border border-t border-gray-200 bg-white px-3 py-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.05)]">
+            <InvoicePDFDownloadLink data={state} />
+                <Button
+                  onClick={handleSave}
+                  disabled={saving} // Disable button while saving
+                  className="cursor-pointer"
+                >
+                  {saving ? (
+                    <span className="inline-flex items-center">
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Saving...
+                    </span>
+                  ) : (
+                    <>
+                      <Save className="mr-2 h-4 w-4" strokeWidth={3} />
+                      {isNew ? "Save" : "Update"}
+                    </>
+                  )}
+                </Button>
           </div>
         </div>
       </div>
