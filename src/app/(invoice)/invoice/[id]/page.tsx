@@ -5,14 +5,9 @@ import { InvoiceData } from "@/context/types";
 import { db } from "@/db/db";
 import { invoices } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }) {
   const { id } = params;
   let title = "New Invoice - InvoiceGen";
   let description = "Create a new invoice with InvoiceGen.";
