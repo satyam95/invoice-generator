@@ -13,7 +13,7 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { id } = params;
   let title = "New Invoice - InvoiceGen";
   let description = "Create a new invoice with InvoiceGen.";
 
@@ -56,7 +56,7 @@ export default async function InvoicePage({
     return <div>Please log in to access this page.</div>;
   }
 
-  const { id } = await params;
+  const { id } = params;
   const userId = session.user.id;
   let initialData: InvoiceData;
   let isNew: boolean;
