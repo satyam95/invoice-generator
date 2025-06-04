@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
 import { checkDeviceUserAgent } from "@/lib/check-device.server";
 import { DeviceContextProvider } from "@/context/device-context";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,10 +30,10 @@ export default async function RootLayout({
           isDesktop={isDesktopServer}
           isAndroid={isAndroid}
         >
-          <SessionProvider>
+          <AuthProvider>
             {children}
             <Toaster position="bottom-right" />
-          </SessionProvider>
+          </AuthProvider>
         </DeviceContextProvider>
       </body>
     </html>
