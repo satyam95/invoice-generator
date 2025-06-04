@@ -3,7 +3,7 @@
 // Adjust path
 import { and, eq } from "drizzle-orm";
 import { InvoiceData } from "@/context/types"; // Adjust path
-import { auth } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { db } from "@/db/db";
 import { invoices } from "@/db/schema";
 

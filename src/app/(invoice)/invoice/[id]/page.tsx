@@ -1,14 +1,16 @@
-import { auth } from "@/app/api/auth/[...nextauth]/route";
 import Invoice from "@/components/Invoice";
 import { initialState } from "@/context/InvoiceContext";
 import { InvoiceData } from "@/context/types";
 import { db } from "@/db/db";
 import { invoices } from "@/db/schema";
+import { auth } from "@/lib/auth";
 import { and, eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const { id } = params;
+type Params = Promise<{ id: string }>;
+
+export async function generateMetadata({ params }: { params: Params }) {
+  const { id } = await params;
   let title = "New Invoice - InvoiceGen";
   let description = "Create a new invoice with InvoiceGen.";
 
@@ -41,17 +43,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default async function InvoicePage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function InvoicePage({ params }: { params: Params }) {
   const session = await auth();
   if (!session) {
     return <div>Please log in to access this page.</div>;
   }
 
-  const { id } = params;
+  const { id } = await params;
   const userId = session.user.id;
   let initialData: InvoiceData;
   let isNew: boolean;

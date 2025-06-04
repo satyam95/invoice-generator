@@ -1,4 +1,4 @@
-import { auth } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { SignUpForm } from "@/components/SignUpForm";
 import { Button } from "@/components/ui/button";
 import { MoveLeft } from "lucide-react";

@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { db } from "@/db/db";
 import { invoices } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
