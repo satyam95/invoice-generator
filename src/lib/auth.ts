@@ -5,7 +5,7 @@ import { accounts, sessions, users, verificationTokens } from "@/db/schema";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { eq } from "drizzle-orm";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { JWT } from "next-auth/jwt";
 import { Session } from 'next-auth';
 
