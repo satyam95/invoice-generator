@@ -60,10 +60,17 @@ const InvoiceForm = () => {
             <InvoiceItemsForm />
           </AccordionContent>
         </AccordionItem>
+        <AccordionItem value="totals" className="rounded-lg border shadow">
+          <AccordionTrigger className="px-4 py-3 items-center">
+            <div className="text-lg font-semibold text-gray-900">
+              Additional Charges and Discounts
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="px-4 pb-4">
+            <TotalInfoForm />
+          </AccordionContent>
+        </AccordionItem>
       </Accordion>
-      <div className="px-2">
-        <TotalInfoForm />
-      </div>
     </div>
   );
 };

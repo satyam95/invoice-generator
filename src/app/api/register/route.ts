@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { randomUUID } from "crypto";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {

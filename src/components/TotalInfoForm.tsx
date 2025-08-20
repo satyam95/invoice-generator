@@ -3,14 +3,48 @@ import { useInvoice } from "@/context/InvoiceContext";
 import React from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Switch } from "./ui/switch";
 // import { Textarea } from "./ui/textarea";
 
 const TotalInfoForm = () => {
   const { state, dispatch } = useInvoice();
+
+  const handleRequirementToggle = (field: keyof typeof state.requirements, required: boolean) => {
+    dispatch({ type: "UPDATE_REQUIREMENT", payload: { field, required } });
+  };
+
+  // Safety check for requirements object
+  const requirements = state.requirements || {
+    sellerVatNumber: false,
+    sellerEmail: false,
+    sellerPhone: false,
+    buyerEmail: false,
+    buyerPhone: false,
+    itemTaxAmount: false,
+    itemTaxPercentage: false,
+    additionalCharges: false,
+    discount: false,
+    orderNumber: false,
+    purchaseOrder: false,
+    serviceDate: false,
+  };
+
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="additionalCharges">Additional Charges</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="additionalCharges">Additional Charges</Label>
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="additional-charges-required" className="text-xs text-gray-500">
+              Hide in PDF
+            </Label>
+            <Switch
+              id="additional-charges-required"
+              checked={requirements.additionalCharges}
+              onCheckedChange={(checked) => handleRequirementToggle("additionalCharges", checked)}
+            />
+          </div>
+        </div>
         <div className="space-y-0.5">
           <Input
             id="additionalCharges"
@@ -23,11 +57,25 @@ const TotalInfoForm = () => {
               })
             }
           />
-          <p className="text-xs text-gray-500">Enter the additional charges.</p>
+          <p className="text-xs text-gray-500">
+            Enter the additional charges.
+          </p>
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="discount">Discount</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="discount">Discount</Label>
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="discount-required" className="text-xs text-gray-500">
+              Hide in PDF
+            </Label>
+            <Switch
+              id="discount-required"
+              checked={requirements.discount}
+              onCheckedChange={(checked) => handleRequirementToggle("discount", checked)}
+            />
+          </div>
+        </div>
         <div className="space-y-0.5">
           <Input
             id="discount"
@@ -40,7 +88,9 @@ const TotalInfoForm = () => {
               })
             }
           />
-          <p className="text-xs text-gray-500">Enter the discount ammount.</p>
+          <p className="text-xs text-gray-500">
+            Enter the discount amount.
+          </p>
         </div>
       </div>
       <div className="space-y-2">

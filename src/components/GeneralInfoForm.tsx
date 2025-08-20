@@ -14,15 +14,36 @@ import { Input } from "./ui/input";
 import { useInvoice } from "@/context/InvoiceContext";
 import { InvoiceData } from "@/context/types";
 import { DatePicker } from "./DatePicker";
+import { Switch } from "./ui/switch";
 
 const GeneralInfoForm = () => {
   const { state, dispatch } = useInvoice();
 
-  const handleChange = (
-    field: keyof InvoiceData["general"],
-    value: string | Date | null
+  const handleChange = <K extends keyof InvoiceData["general"]>(
+    field: K,
+    value: InvoiceData["general"][K]
   ) => {
     dispatch({ type: "UPDATE_GENERAL", payload: { [field]: value } });
+  };
+
+  const handleRequirementToggle = (field: keyof InvoiceData["requirements"], required: boolean) => {
+    dispatch({ type: "UPDATE_REQUIREMENT", payload: { field, required } });
+  };
+
+  // Safety check for requirements object
+  const requirements = state.requirements || {
+    sellerVatNumber: false,
+    sellerEmail: false,
+    sellerPhone: false,
+    buyerEmail: false,
+    buyerPhone: false,
+    itemTaxAmount: false,
+    itemTaxPercentage: false,
+    additionalCharges: false,
+    discount: false,
+    orderNumber: false,
+    purchaseOrder: false,
+    serviceDate: false,
   };
 
   return (
@@ -91,7 +112,19 @@ const GeneralInfoForm = () => {
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="orderNumber">Order Number</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="orderNumber">Order Number</Label>
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="order-number-required" className="text-xs text-gray-500">
+              Hide in PDF
+            </Label>
+            <Switch
+              id="order-number-required"
+              checked={requirements.orderNumber}
+              onCheckedChange={(checked) => handleRequirementToggle("orderNumber", checked)}
+            />
+          </div>
+        </div>
         <div className="space-y-0.5">
           <Input
             id="orderNumber"
@@ -99,13 +132,23 @@ const GeneralInfoForm = () => {
             value={state.general.orderNumber}
             onChange={(e) => handleChange("orderNumber", e.target.value)}
           />
-          <p className="text-xs text-gray-500">
-            Enter the unique order number.
-          </p>
+          <p className="text-xs text-gray-500">Enter the unique order number.</p>
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="purchaseOrder">Purchase Order</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="purchaseOrder">Purchase Order</Label>
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="purchase-order-required" className="text-xs text-gray-500">
+              Hide in PDF
+            </Label>
+            <Switch
+              id="purchase-order-required"
+              checked={requirements.purchaseOrder}
+              onCheckedChange={(checked) => handleRequirementToggle("purchaseOrder", checked)}
+            />
+          </div>
+        </div>
         <div className="space-y-0.5">
           <Input
             id="purchaseOrder"
@@ -113,9 +156,7 @@ const GeneralInfoForm = () => {
             value={state.general.purchaseOrder}
             onChange={(e) => handleChange("purchaseOrder", e.target.value)}
           />
-          <p className="text-xs text-gray-500">
-            Enter the unique purchase order number.
-          </p>
+          <p className="text-xs text-gray-500">Enter the unique purchase order number.</p>
         </div>
       </div>
       <div className="space-y-2">
@@ -156,16 +197,26 @@ const GeneralInfoForm = () => {
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="serviceDate">Date of Service</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="serviceDate">Date of Service</Label>
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="service-date-required" className="text-xs text-gray-500">
+              Hide in PDF
+            </Label>
+            <Switch
+              id="service-date-required"
+              checked={requirements.serviceDate}
+              onCheckedChange={(checked) => handleRequirementToggle("serviceDate", checked)}
+            />
+          </div>
+        </div>
         <div className="space-y-0.5">
           <DatePicker
             value={state.general.serviceDate ?? undefined}
             onChange={(date) => handleChange("serviceDate", date ?? null)}
             dateFormat={state.general.dateFormat}
           />
-          <p className="text-xs text-gray-500">
-            Enter the date the service or product was provided.
-          </p>
+          <p className="text-xs text-gray-500">Enter the date the service or product was provided.</p>
         </div>
       </div>
     </div>

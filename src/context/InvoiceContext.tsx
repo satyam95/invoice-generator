@@ -17,7 +17,8 @@ type Action =
   | { type: "UPDATE_ADDITIONAL_CHARGES"; payload: string }
   | { type: "UPDATE_DISCOUNT"; payload: string }
   | { type: "UPDATE_NOTE"; payload: string }
-  | { type: "UPDATE_NAME"; payload: string };
+  | { type: "UPDATE_NAME"; payload: string }
+  | { type: "UPDATE_REQUIREMENT"; payload: { field: keyof InvoiceData["requirements"]; required: boolean } };
 
 const currentDate = new Date(); // May 15, 2025
 const serviceDate = new Date(currentDate);
@@ -34,6 +35,9 @@ export const initialState: InvoiceData = {
     purchaseOrder: "PO0000001",
     issueDate: currentDate,
     serviceDate: serviceDate,
+    showOrderNumber: true,
+    showPurchaseOrder: true,
+    showServiceDate: true,
   },
   seller: {
     name: "Your Business Name",
@@ -70,6 +74,20 @@ export const initialState: InvoiceData = {
   additionalCharges: "100.00",
   discount: "500.00",
   note: "Additional notes",
+  requirements: {
+    sellerVatNumber: false,
+    sellerEmail: false,
+    sellerPhone: false,
+    buyerEmail: false,
+    buyerPhone: false,
+    itemTaxAmount: false,
+    itemTaxPercentage: false,
+    additionalCharges: false,
+    discount: false,
+    orderNumber: false,
+    purchaseOrder: false,
+    serviceDate: false,
+  },
 };
 
 function invoiceReducer(state: InvoiceData, action: Action): InvoiceData {
@@ -106,6 +124,27 @@ function invoiceReducer(state: InvoiceData, action: Action): InvoiceData {
       return { ...state, note: action.payload };
     case "UPDATE_NAME":
       return { ...state, name: action.payload };
+    case "UPDATE_REQUIREMENT":
+      return {
+        ...state,
+        requirements: {
+          ...(state.requirements || {
+            sellerVatNumber: false,
+            sellerEmail: false,
+            sellerPhone: false,
+            buyerEmail: false,
+            buyerPhone: false,
+            itemTaxAmount: false,
+            itemTaxPercentage: false,
+            additionalCharges: false,
+            discount: false,
+            orderNumber: false,
+            purchaseOrder: false,
+            serviceDate: false,
+          }),
+          [action.payload.field]: action.payload.required,
+        },
+      };
     default:
       return state;
   }
@@ -120,9 +159,33 @@ export const InvoiceProvider: React.FC<{
   children: React.ReactNode;
   initialData?: InvoiceData;
 }> = ({ children, initialData }) => {
+  // Ensure requirements object is always present with all fields
+  const defaultRequirements = {
+    sellerVatNumber: false,
+    sellerEmail: false,
+    sellerPhone: false,
+    buyerEmail: false,
+    buyerPhone: false,
+    itemTaxAmount: false,
+    itemTaxPercentage: false,
+    additionalCharges: false,
+    discount: false,
+    orderNumber: false,
+    purchaseOrder: false,
+    serviceDate: false,
+  };
+
+  const safeInitialData = initialData ? {
+    ...initialData,
+    requirements: {
+      ...defaultRequirements,
+      ...(initialData.requirements || {}),
+    },
+  } : initialState;
+
   const [state, dispatch] = useReducer(
     invoiceReducer,
-    initialData || initialState
+    safeInitialData
   );
   return (
     <InvoiceContext.Provider value={{ state, dispatch }}>

@@ -9,6 +9,21 @@ export interface InvoiceItem {
   total: number;
 }
 
+export interface FieldRequirements {
+  sellerVatNumber: boolean;
+  sellerEmail: boolean;
+  sellerPhone: boolean;
+  buyerEmail: boolean;
+  buyerPhone: boolean;
+  itemTaxAmount: boolean;
+  itemTaxPercentage: boolean;
+  additionalCharges: boolean;
+  discount: boolean;
+  orderNumber: boolean;
+  purchaseOrder: boolean;
+  serviceDate: boolean;
+}
+
 export interface InvoiceData {
   name: string;
   general: {
@@ -20,6 +35,9 @@ export interface InvoiceData {
     serviceDate: Date | null;
     orderNumber: string;
     purchaseOrder: string;
+    showOrderNumber?: boolean;
+    showPurchaseOrder?: boolean;
+    showServiceDate?: boolean;
   };
   seller: {
     name: string;
@@ -42,4 +60,5 @@ export interface InvoiceData {
   discount: string;
   total: string;
   note: string;
+  requirements: FieldRequirements;
 }

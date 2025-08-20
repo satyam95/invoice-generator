@@ -29,6 +29,8 @@ declare module "next-auth" {
   }
 }
 
+export const runtime = "nodejs";
+
 export const authConfig: NextAuthConfig = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [

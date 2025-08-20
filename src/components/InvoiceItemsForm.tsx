@@ -2,6 +2,7 @@
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { Switch } from "./ui/switch";
 import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import { useInvoice } from "@/context/InvoiceContext";
@@ -25,8 +26,52 @@ const InvoiceItemsForm = () => {
     dispatch({ type: "ADD_ITEM", payload: newItem });
   };
 
+  const handleRequirementToggle = (field: keyof typeof state.requirements, required: boolean) => {
+    dispatch({ type: "UPDATE_REQUIREMENT", payload: { field, required } });
+  };
+
+  // Safety check for requirements object
+  const requirements = state.requirements || {
+    sellerVatNumber: false,
+    sellerEmail: false,
+    sellerPhone: false,
+    buyerEmail: false,
+    buyerPhone: false,
+    itemTaxAmount: false,
+    itemTaxPercentage: false,
+    additionalCharges: false,
+    discount: false,
+    orderNumber: false,
+    purchaseOrder: false,
+    serviceDate: false,
+  };
+
   return (
     <div className="space-y-4">
+      {/* Requirement toggles for all items */}
+      <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="tax-amount-required" className="text-sm font-medium">
+            Hide Tax Amount in PDF
+          </Label>
+          <Switch
+            id="tax-amount-required"
+            checked={requirements.itemTaxAmount}
+            onCheckedChange={(checked) => handleRequirementToggle("itemTaxAmount", checked)}
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="tax-percentage-required" className="text-sm font-medium">
+            Hide Tax Percentage in PDF
+          </Label>
+          <Switch
+            id="tax-percentage-required"
+            checked={requirements.itemTaxPercentage}
+            onCheckedChange={(checked) => handleRequirementToggle("itemTaxPercentage", checked)}
+          />
+        </div>
+      </div>
+
       {state.items  && state.items.map((item, index) => (
         <fieldset
           key={index}
@@ -138,7 +183,9 @@ const InvoiceItemsForm = () => {
                       })
                     }
                   />
-                  <p className="text-xs text-gray-500">Enter the tax amount.</p>
+                  <p className="text-xs text-gray-500">
+                    Enter the tax amount.
+                  </p>
                 </div>
               </div>
               <div className="space-y-2">
@@ -159,7 +206,9 @@ const InvoiceItemsForm = () => {
                       })
                     }
                   />
-                  <p className="text-xs text-gray-500">Enter the tax amount.</p>
+                  <p className="text-xs text-gray-500">
+                    Enter the tax percentage.
+                  </p>
                 </div>
               </div>
             </div>

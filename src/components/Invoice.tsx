@@ -120,7 +120,7 @@ export default function Invoice({
                 </div>
               </div>
               <div className="hidden xl:flex items-center gap-4">
-                <InvoicePDFDownloadLink data={state} />
+                <InvoicePDFDownloadLink key={Date.now()} data={state} />
                 <Button
                   onClick={handleSave}
                   disabled={saving} // Disable button while saving
@@ -180,7 +180,7 @@ export default function Invoice({
             </TabsContent>
           </Tabs>
           <div className="absolute left-0 bottom-0 z-50 mt-2 flex items-center justify-center gap-3 w-full border border-t border-gray-200 bg-white px-3 py-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.05)]">
-            <InvoicePDFDownloadLink data={state} />
+            <InvoicePDFDownloadLink key={Date.now()} data={state} />
                 <Button
                   onClick={handleSave}
                   disabled={saving} // Disable button while saving

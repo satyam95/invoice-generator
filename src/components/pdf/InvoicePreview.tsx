@@ -76,13 +76,14 @@ const InvoicePreview: React.FC = () => {
     return () => clearTimeout(timer);
   }, [state]);
 
-  // Generate a unique key based on items array
+  // Generate a unique key based on items array and requirements
   const pdfKey = useMemo(
     () =>
-      JSON.stringify(
-        stableState.items.map((item) => item.id || item.name + item.description)
-      ),
-    [stableState.items]
+      JSON.stringify({
+        items: stableState.items.map((item) => item.id || item.name + item.description),
+        requirements: stableState.requirements
+      }),
+    [stableState.items, stableState.requirements]
   );
   // Validate state before rendering
   if (!stableState.items || stableState.items.length === 0) {

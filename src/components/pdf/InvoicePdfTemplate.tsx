@@ -12,6 +12,22 @@ interface Props {
 }
 
 const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
+  // Safety check for requirements object
+  const requirements = data.requirements || {
+    sellerVatNumber: false,
+    sellerEmail: false,
+    sellerPhone: false,
+    buyerEmail: false,
+    buyerPhone: false,
+    itemTaxAmount: false,
+    itemTaxPercentage: false,
+    additionalCharges: false,
+    discount: false,
+    orderNumber: false,
+    purchaseOrder: false,
+    serviceDate: false,
+  };
+
   return (
     <Document title={`invoice-${data.general.invoiceNumber}`}>
       <Page size="A4" style={styles.page}>
@@ -23,42 +39,47 @@ const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
               No: {data.general.invoiceNumber}
             </Text>
             <View style={styles.orderDetails}>
-              <View style={styles.detailsGrid}>
-                <Text style={styles.detailsLabel}>Order No:</Text>
-                <Text style={styles.detailsValue}>
-                  #{data.general.orderNumber}
-                </Text>
-              </View>
-              <View style={styles.detailsGrid}>
-                <Text style={styles.detailsLabel}>Purchase Order:</Text>
-                <Text style={styles.detailsValue}>
-                  {data.general.purchaseOrder}
-                </Text>
-              </View>
+              {!requirements.orderNumber && (
+                <View style={styles.detailsGrid}>
+                  <Text style={styles.detailsLabel}>Order No:</Text>
+                  <Text style={styles.detailsValue}>#{data.general.orderNumber}</Text>
+                </View>
+              )}
+              {!requirements.purchaseOrder && (
+                <View style={styles.detailsGrid}>
+                  <Text style={styles.detailsLabel}>Purchase Order:</Text>
+                  <Text style={styles.detailsValue}>{data.general.purchaseOrder}</Text>
+                </View>
+              )}
               <View style={styles.detailsGrid}>
                 <Text style={styles.detailsLabel}>Invoice Date:</Text>
                 <Text style={styles.detailsValue}>
                   {formatDate(data.general.issueDate, data.general.dateFormat)}
                 </Text>
               </View>
-              <View style={styles.detailsGrid}>
-                <Text style={styles.detailsLabel}>Due Date:</Text>
-                <Text style={styles.detailsValue}>
-                  {formatDate(
-                    data.general.serviceDate,
-                    data.general.dateFormat
-                  )}
-                </Text>
-              </View>
+              {!requirements.serviceDate && (
+                <View style={styles.detailsGrid}>
+                  <Text style={styles.detailsLabel}>Due Date:</Text>
+                  <Text style={styles.detailsValue}>
+                    {formatDate(data.general.serviceDate, data.general.dateFormat)}
+                  </Text>
+                </View>
+              )}
             </View>
           </View>
           <View style={styles.headerRight}>
             <Text style={styles.sellerName}>{data.seller.name}</Text>
-            <Text style={styles.sellerVat}>TAX - {data.seller.vatNumber}</Text>
+            {!requirements.sellerVatNumber && (
+              <Text style={styles.sellerVat}>TAX - {data.seller.vatNumber}</Text>
+            )}
             <View style={styles.orderDescription}>
               <Text style={styles.detailsText}>{data.seller.address}</Text>
-              <Text style={styles.detailsText}>{data.seller.email}</Text>
-              <Text style={styles.detailsText}>{data.seller.phone}</Text>
+              {!requirements.sellerEmail && (
+                <Text style={styles.detailsText}>{data.seller.email}</Text>
+              )}
+              {!requirements.sellerPhone && (
+                <Text style={styles.detailsText}>{data.seller.phone}</Text>
+              )}
             </View>
           </View>
         </View>
@@ -69,8 +90,12 @@ const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
             <View style={styles.customerDetails}>
               <Text style={styles.customerHead}>Customer Details</Text>
               <Text style={styles.customerDesp}>{data.buyer.name}</Text>
-              <Text style={styles.customerDesp}>{data.buyer.email}</Text>
-              <Text style={styles.customerDesp}>{data.buyer.phone}</Text>
+              {!requirements.buyerEmail && (
+                <Text style={styles.customerDesp}>{data.buyer.email}</Text>
+              )}
+              {!requirements.buyerPhone && (
+                <Text style={styles.customerDesp}>{data.buyer.phone}</Text>
+              )}
             </View>
           </View>
           <View style={styles.customerRight}>
@@ -88,7 +113,9 @@ const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
             <Text style={styles.tableCol2}>Item Name</Text>
             <Text style={styles.tableCol3}>Qty</Text>
             <Text style={styles.tableCol4}>Unit Price</Text>
-            <Text style={styles.tableCol5}>Tax</Text>
+            {(!requirements.itemTaxAmount || !requirements.itemTaxPercentage) && (
+              <Text style={styles.tableCol5}>Tax</Text>
+            )}
             <Text style={styles.tableCol6}>Total</Text>
           </View>
           {data.items &&
@@ -108,17 +135,23 @@ const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
                   {getCurrencySymbol(data.general.currency)}
                   {itemData.unitPrice.toFixed(2)}
                 </Text>
-                <View style={styles.tableCol5}>
-                  <View style={styles.despCell}>
-                    <Text>
-                      {getCurrencySymbol(data.general.currency)}
-                      {itemData.taxAmount.toFixed(2)}
-                    </Text>
-                    <Text style={styles.subDespCell}>
-                      {itemData.taxPercentage}%
-                    </Text>
+                {(!requirements.itemTaxAmount || !requirements.itemTaxPercentage) && (
+                  <View style={styles.tableCol5}>
+                    <View style={styles.despCell}>
+                      {!requirements.itemTaxAmount && (
+                        <Text>
+                          {getCurrencySymbol(data.general.currency)}
+                          {itemData.taxAmount.toFixed(2)}
+                        </Text>
+                      )}
+                      {!requirements.itemTaxPercentage && (
+                        <Text style={styles.subDespCell}>
+                          {itemData.taxPercentage}%
+                        </Text>
+                      )}
+                    </View>
                   </View>
-                </View>
+                )}
                 <Text style={styles.tableCol6}>
                   {getCurrencySymbol(data.general.currency)}
                   {itemData.total.toFixed(2)}
@@ -135,26 +168,30 @@ const InvoicePdfTemplate: React.FC<Props> = ({ data }) => {
           </View>
           <View style={styles.totalCol}>
             <View style={styles.subTotalBlock}>
-              <View style={styles.subTotalRow}>
-                <Text style={styles.subTotalHead}>Additional Charges</Text>
-                <Text style={styles.subTotalDesp}>
-                  {getCurrencySymbol(data.general.currency)}
-                  {data.additionalCharges}
-                </Text>
-              </View>
+              {!requirements.additionalCharges && (
+                <View style={styles.subTotalRow}>
+                  <Text style={styles.subTotalHead}>Additional Charges</Text>
+                  <Text style={styles.subTotalDesp}>
+                    {getCurrencySymbol(data.general.currency)}
+                    {data.additionalCharges}
+                  </Text>
+                </View>
+              )}
               {/* <View style={styles.subTotalRow}>
                 <Text style={styles.subTotalHead}>Subtotal</Text>
                 <Text style={styles.subTotalDesp}>
                   {getCurrencySymbol(data.general.currency)}28,016.00
                 </Text>
               </View> */}
-              <View style={styles.subTotalRow}>
-                <Text style={styles.subTotalHead}>Discount</Text>
-                <Text style={styles.subTotalDesp}>
-                  -{getCurrencySymbol(data.general.currency)}
-                  {data.discount}
-                </Text>
-              </View>
+              {!requirements.discount && (
+                <View style={styles.subTotalRow}>
+                  <Text style={styles.subTotalHead}>Discount</Text>
+                  <Text style={styles.subTotalDesp}>
+                    -{getCurrencySymbol(data.general.currency)}
+                    {data.discount}
+                  </Text>
+                </View>
+              )}
             </View>
             <View style={styles.totalRow}>
               <Text style={styles.totalHead}>Grand Total</Text>
